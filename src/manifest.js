@@ -1,9 +1,9 @@
 import { defineManifest } from '@crxjs/vite-plugin'
 
 export default defineManifest({
-  name: 'create-chrome-ext',
+  name: 'Linways Auto Feedback Filler',
   description: '',
-  version: '0.0.0',
+  version: '1.0.0',
   manifest_version: 3,
   icons: {
     16: 'img/logo-16.png',
@@ -15,7 +15,6 @@ export default defineManifest({
     default_popup: 'popup.html',
     default_icon: 'img/logo-48.png',
   },
-  options_page: 'options.html',
   background: {
     service_worker: 'src/background/index.js',
     type: 'module',
@@ -32,5 +31,5 @@ export default defineManifest({
       matches: [],
     },
   ],
-  permissions: [],
+  permissions: ['tabs', 'activeTab', 'scripting'],
 })
