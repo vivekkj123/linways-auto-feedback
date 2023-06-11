@@ -28,3 +28,17 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   }
 })
 
+/*
+To get name of faculty
+-----------------------
+Name of the faculty is available by targetting this classname:  '.photoholder > table > tbody > tr > td > span > img' Fetch it from the evaluation page and send it as response
+*/
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.action === 'getFacultyName') {
+    let facultyName = document.querySelector(
+      '.photoholder > table > tbody > tr > td > span > img',
+    ).title
+    sendResponse({ facultyName })
+    return true
+  }
+})

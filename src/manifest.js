@@ -19,6 +19,10 @@ export default defineManifest({
     service_worker: 'src/background/index.js',
     type: 'module',
   },
+  host_permissions:[
+    'http://*.linways.com/evaluation/*/*',
+    'https://*.linways.com/evaluation/*/*'
+  ],
   content_scripts: [
     {
       matches: ['http://*/*', 'https://*/*'],

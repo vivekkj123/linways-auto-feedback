@@ -1,9 +1,25 @@
+import { useEffect, useState } from 'react'
 import './Popup.css'
 
 function App() {
+  const [Name, setName] = useState('')
+  const [EvaluationPage, setEvaluationPage] = useState(false)
+  useEffect(() => {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+      const currentUrl = tabs[0].url
+      // To get name of faculty
+      if (currentUrl.includes('.linways.com/evaluation/')) {
+        setEvaluationPage(true)
+        chrome.runtime.sendMessage({ action: 'getFacultyName' }, function (res) {
+          setName(res.facultyName)
+        })
+      }
+    })
+  }, [])
   return (
     <main>
       <h2>Linways Auto Feedback Filler</h2>
+      {EvaluationPage ? (
         <>
           <p>Choose the performance level for {Name}</p>
           {/* different actions need to be sent for different performance levels */}
@@ -34,6 +50,9 @@ function App() {
             </button>
           </div>
         </>
+      ) : (
+        <h3>Please Execute me on a Linways Evaluation Page</h3>
+      )}
     </main>
   )
 }
