@@ -3,7 +3,7 @@ import { defineManifest } from '@crxjs/vite-plugin'
 export default defineManifest({
   name: 'Linways Auto Feedback Filler',
   description: '',
-  version: '1.0.0',
+  version: '1.1.0',
   manifest_version: 3,
   icons: {
     16: 'img/logo-16.png',
